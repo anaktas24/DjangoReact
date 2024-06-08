@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note
+from .models import Task
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,3 +13,9 @@ class UserSerializer(serializers.ModelSerializer):
         print(validated_data)
         user = User.objects.create_user(**validated_data)
         return user
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ["id", "title", "completed", "upcoming","active", "user"]
+        extra_kwargs = {"user": {"read_only": True}}
