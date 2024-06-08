@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Task
+from .models import Profile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,4 +19,10 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ["id", "title", "completed", "upcoming","active", "user"]
+        extra_kwargs = {"user": {"read_only": True}}
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ["id", "bio", "profile_pic", "user"]
         extra_kwargs = {"user": {"read_only": True}}
