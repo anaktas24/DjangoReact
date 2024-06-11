@@ -1,20 +1,20 @@
 .navbar {
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.navbar-logo h1 {
-  margin: 0;
+.navbar-logo {
+  flex: 1;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 40px;
   margin: 0;
   padding: 0;
 }
@@ -24,10 +24,11 @@
 }
 
 .navbar-links a {
-  color: white;
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
 .navbar-links a:hover {
-  text-decoration: underline;
+  color: #007bff;
 }
