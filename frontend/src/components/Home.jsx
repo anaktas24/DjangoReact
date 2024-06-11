@@ -9,9 +9,9 @@ const Home = () => {
     <div className="home">
       <div className="home-content">
         <div className="home-left">
-          <button className="cta-button">Click Here</button>
+          <h1>Welcome to Migrating Mango</h1>
           <header className="home-header">
-            <h1>The World Is Open To You</h1>
+            <h2>Your fruity companion to migration</h2>
           </header>
           <section className="home-description">
             <h3>Subtitle And Others</h3>
