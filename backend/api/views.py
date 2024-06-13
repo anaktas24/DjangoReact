@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
+from django.contrib.auth import get_user_model
 from .models import Task
 from .serializers import TaskSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
+
+User = get_user_model()
 
 class TaskCreate(generics.CreateAPIView):
     serializer_class = TaskSerializer
@@ -12,7 +15,6 @@ class TaskCreate(generics.CreateAPIView):
     def get_queryset(self):
         user = self.request.user
         return Task.objects.filter(user=user)
-
 
 
 class CreateUserView(generics.CreateAPIView):
