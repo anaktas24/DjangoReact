@@ -5,21 +5,25 @@ import '../styles/Register.css'
 function Register() {
     return (
       <>
-        <div id="container">
-            <h1>Register</h1>
-            <h2>Your fruity companion to Migration</h2>
+
+        <div className="main-title form-block">
+          <div id="title">
+             <h1>login.</h1>
+             <h2>Your fruity companion to Migration</h2>
+          </div>
             <form>
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
                 <button type="submit">Register</button>
             </form>
             <div id="labels">
-              <label for="Register">Already registered? <span>Login</span></label>
-              <label for="reset">Password lost? <span>Reset</span></label>
-              <label for="Register"><span>Back</span></label>
-              <label for="register">Not registered? <span>Create an account</span></label>
+              Already registered? <span>Login</span>
+              Password lost? <span>Reset</span>
+              <span>Back</span>
+              Not registered? <span>Create an account</span>
             </div>
         </div>
+
       </>
     )
 }
