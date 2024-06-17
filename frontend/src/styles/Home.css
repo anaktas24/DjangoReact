@@ -1,3 +1,17 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
 .home {
   display: flex;
   flex-direction: column;
@@ -35,6 +49,16 @@
   padding: 20px;
 }
 
+.home-left > h1{
+  font-size: 48px;
+  color: #ffffff;
+}
+
+.home-header >h2 {
+  font-size: 36px;
+  color: #ffffff;
+}
+
 .cta-button {
   padding: 10px 20px;
   background-color: #ff6347;
@@ -52,7 +76,7 @@
 
 .home-description h3 {
   font-size: 24px;
-  color: #666;
+  color: #ffffff;
   margin-top: 20px;
 }
 
@@ -73,26 +97,4 @@
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-}
-
-.home-footer {
-  background-color: #c0c0c0;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.social-icons a {
-  color: white;
-  text-decoration: none;
-}
-
-.social-icons a:hover {
-  color: #007bff;
 }
