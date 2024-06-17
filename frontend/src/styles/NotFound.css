@@ -19,7 +19,7 @@
   overflow: default;
 }
 
-body:after {
+.error:after {
   content: 'error 404';
   font-family: OCR-A;
   font-size: 100px;
@@ -37,7 +37,7 @@ body:after {
   -webkit-animation: noise-1 .2s linear infinite;
           animation: noise-1 .2s linear infinite;
 }
-body:before {
+.error:before {
   content: 'error 404';
   font-family: OCR-A;
   font-size: 100px;
