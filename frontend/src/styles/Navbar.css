@@ -2,9 +2,12 @@
   background: transparent;
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-
+  position: fixed; /* Make the navbar fixed at the top */
+  width: 100%;
+  top:  0;
+  z-index: 3; /* Ensure the navbar is above the background image */
 }
 
 .navbar-logo {
@@ -25,7 +28,7 @@
 
 .navbar-links a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
 }
 
