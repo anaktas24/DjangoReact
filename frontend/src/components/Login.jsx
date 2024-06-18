@@ -3,14 +3,15 @@ import '../styles/Login.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function Login() {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const response = await fetch('/api/token/', {
+        const response = await fetch('http://localhost:8000/api/login/', {  // Ensure the correct URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,12 +24,14 @@ function Login() {
             localStorage.setItem('token', data.access);
             navigate('/profile');
         } else {
-            console.error('Login failed');
+            const errorData = await response.json();
+            setError(errorData.detail || 'Login failed');
         }
     };
 
     return (
         <form onSubmit={handleLogin}>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
             <div>
                 <label>Username:</label>
                 <input
@@ -50,4 +53,4 @@ function Login() {
     );
 };
 
-export default Login
+export default Login;
