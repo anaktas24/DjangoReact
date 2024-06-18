@@ -7,6 +7,7 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Profile from './components/Profile'
 
 function Logout() {
   localStorage.clear()
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

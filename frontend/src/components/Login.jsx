@@ -1,27 +1,53 @@
 import React from 'react'
 import '../styles/Login.css'
-
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Login() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const response = await fetch('/api/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('token', data.access);
+            navigate('/profile');
+        } else {
+            console.error('Login failed');
+        }
+    };
+
     return (
-      <>
-        <div id="container">
-            <h1>Login</h1>
-            <h2>Your fruity companion to Migration</h2>
-            <form>
-                <input type="email" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Password" />
-                <button type="submit">Login</button>
-            </form>
-            <div id="labels">
-              <label for="login">Already registered? <span>Login</span></label>
-              <label for="reset">Password lost? <span>Reset</span></label>
-              <label for="login"><span>Back</span></label>
-              <label for="register">Not registered? <span>Create an account</span></label>
+        <form onSubmit={handleLogin}>
+            <div>
+                <label>Username:</label>
+                <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
             </div>
-        </div>
-      </>
-    )
-}
+            <div>
+                <label>Password:</label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    );
+};
 
 export default Login
