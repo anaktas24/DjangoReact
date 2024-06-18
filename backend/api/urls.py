@@ -1,3 +1,5 @@
+# Description: This file contains the URL patterns for the API app.
+
 from django.urls import path
 from . import views
 
