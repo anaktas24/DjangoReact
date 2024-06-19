@@ -1,56 +1,61 @@
-import React from 'react'
-import '../styles/Login.css'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
+const Login = ({ onLoginSuccess }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        const response = await fetch('http://localhost:8000/api/login/', {  // Ensure the correct URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
 
-        if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem('token', data.access);
-            navigate('/profile');
-        } else {
-            const errorData = await response.json();
-            setError(errorData.detail || 'Login failed');
-        }
-    };
+    try {
+      const response = await axios.post('/api/login/', {
+        username,
+        password,
+      });
 
-    return (
-        <form onSubmit={handleLogin}>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            <div>
-                <label>Username:</label>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <button type="submit">Login</button>
-        </form>
-    );
+      // Assuming the response contains a token
+      const { token } = response.data;
+
+      // Call the onLoginSuccess prop with the token
+      onLoginSuccess(token);
+    } catch (err) {
+      // Handle error (e.g., display an error message)
+      setError('Invalid username or password');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <div className="error">{error}</div>}
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 };
 
 export default Login;
