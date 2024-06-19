@@ -4,9 +4,7 @@ from django.urls import path
 from . import views
 
 
-
-
 urlpatterns = [
-    path("taskcreate/", views.TaskCreate.as_view(), name="task-list"),
-    path("profile/", views.ProfileView.as_view(), name="profile"),
+    path("user/register/", views.CreateUserView.as_view(), name="register"),
+    path('profile/<int:pk>/', views.ProfileDetailView.as_view(), name='profile'),
 ]

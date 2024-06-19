@@ -1,28 +1,21 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Task
-from .models import Profile
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ["id", "username", "password"]
-        extra_kwargs = {"password": {"write_only": True}}
-
-    def create(self, validated_data):
-        print(validated_data)
-        user = User.objects.create_user(**validated_data)
-        return user
-
-class TaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Task
-        fields = ["id", "title", "completed", "upcoming","active", "user"]
-        extra_kwargs = {"user": {"read_only": True}}
+from .models import User, Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ["id", "bio", "profile_pic", "user"]
-        extra_kwargs = {"user": {"read_only": True}}
+        fields = ['fullname', 'bio']
+
+class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(required=False)
+
+    class Meta:
+        model = User
+        fields = ["id", "username", "email", "password", "profile"]
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile', {})
+        user = User.objects.create_user(**validated_data)
+        Profile.objects.create(user=user, **profile_data)
+        return user
