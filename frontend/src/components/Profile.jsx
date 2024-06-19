@@ -1,21 +1,18 @@
+// Profile.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function Profile() {
-  const { id } = useParams();
+const Profile = () => {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
+      const token = localStorage.getItem('token'); // Adjust this according to where you store the token
       try {
-        // Get token from local storage (you should adapt this to your storage method)
-        const token = localStorage.getItem('token');
-
-        const response = await axios.get(`http://127.0.0.1:8000/api/profile/${id}/`, {
+        const response = await axios.get('http://127.0.0.1:8000/api/profile/', {
           headers: {
-            Authorization: `Bearer ${token}`, // Send token in Authorization header
-          },
+            Authorization: `Bearer ${token}`
+          }
         });
         setProfile(response.data);
       } catch (error) {
@@ -24,7 +21,7 @@ function Profile() {
     };
 
     fetchProfile();
-  }, [id]);
+  }, []);
 
   if (!profile) {
     return <div>Loading...</div>;
@@ -32,11 +29,10 @@ function Profile() {
 
   return (
     <div>
-      <h1>Profile Page</h1>
-      <p>Username: {profile.username}</p>
+      <h1>Profile</h1>
+      <p>Name: {profile.name}</p>
       <p>Email: {profile.email}</p>
-      <p>Bio: {profile.bio}</p>
-      {/* Add more fields as needed */}
+      {/* Display other profile details here */}
     </div>
   );
 }

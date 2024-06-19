@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Navbar.css';
+import { Link } from 'react-router-dom';
 import vite from '../assets/vite.svg';
 
 const Navbar = () => {
@@ -7,9 +8,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo" style = {{backgroundImage: `url(${vite})`}}></div>
       <ul className="navbar-links">
-        <li><a href="home">Home</a></li>
-        <li><a href="about"></a></li>
-         <li><a href="profile">Profile</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/profile/">Profile</Link></li>
       </ul>
     </nav>
   );
