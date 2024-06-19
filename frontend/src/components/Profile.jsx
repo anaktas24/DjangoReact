@@ -1,48 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const Profile = () => {
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
+function Profile() {
+  const { id } = useParams();
+  const [profile, setProfile] = useState(null);
 
-    useEffect(() => {
-        fetch('http://localhost:8000/api/profile/', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-        .then(response => {
-            if (response.status === 401) {
-                navigate('/login');
-                return null;
-            }
-            return response.json();
-        })
-        .then(data => {
-            setProfile(data);
-            setLoading(false);
-        })
-        .catch(error => {
-            console.error('Error fetching profile:', error);
-            setError(error);
-            setLoading(false);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        // Get token from local storage (you should adapt this to your storage method)
+        const token = localStorage.getItem('token');
+
+        const response = await axios.get(`http://127.0.0.1:8000/api/profile/${id}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
         });
-    }, [navigate]);
+        setProfile(response.data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error.message}</div>;
+    fetchProfile();
+  }, [id]);
 
-    if (!profile) return null;
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            <h1>Profile Page</h1>
-            <p>Username: {profile.username}</p>
-            <p>Email: {profile.email}</p>
-        </div>
-    );
-};
+  return (
+    <div>
+      <h1>Profile Page</h1>
+      <p>Username: {profile.username}</p>
+      <p>Email: {profile.email}</p>
+      <p>Bio: {profile.bio}</p>
+      {/* Add more fields as needed */}
+    </div>
+  );
+}
 
 export default Profile;
