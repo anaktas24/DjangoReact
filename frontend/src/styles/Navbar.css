@@ -32,25 +32,3 @@
   color: #ffffff;
   font-weight: bold;
 }
-
-.navbar-links a:hover {
-  color: #007bff;
-}
-
-.navbar-links a.active {
-  color: #007bff;
-}
-
-.navbar-button {
-  padding: 10px 20px;
-  background-color: #ff6347;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.navbar-button:hover {
-  background-color: #ff4500;
-}
