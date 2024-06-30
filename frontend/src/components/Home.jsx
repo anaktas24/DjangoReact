@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Home.css';
 import mango from '../assets/mango.png'
 import background from '../assets/background.jpg'
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,6 +13,7 @@ const Home = () => {
   <div className="home-content">
     <div className="home-left">
       <h1>Welcome to Migrating Mango</h1>
+      <Link to="/register"><button>  Register </button></Link>
       <header className="home-header">
         <h2>Your fruity companion to migration</h2>
       </header>
@@ -29,6 +31,9 @@ const Home = () => {
     <div className="home-right">
       <img src={mango} alt="Description of image" className="home-image" />
     </div>
+
+
+
   </div>
 </div>
 

@@ -4,7 +4,7 @@
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	color: #f9f1e9;
+	color: #000000;
 	text-align: center;
 	top: 50%;
 	left: 50%;
@@ -21,7 +21,7 @@ input{
   width:300px;
   padding:7px;
   border-radius:3px;
-  border:solid 0.4px #ddd;
+  border:solid 0.4px #050000;
   font-weight:300;
   font-family:'Roboto',helvetica,sans-serif;
 
@@ -29,7 +29,7 @@ input{
 input[type="submit"]{
   width:316px;
   border:0;
-  color:#fff;
+  color:#000000;
   background:#08f;
   font-weight:600;
   box-shadow:0 5px 12px rgba(0,0,0,0.2);

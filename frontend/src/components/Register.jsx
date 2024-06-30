@@ -7,8 +7,6 @@ function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [fullname, setFullname] = useState('');
-    const [bio, setBio] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
@@ -18,10 +16,7 @@ function Register() {
             username,
             email,
             password,
-            profile: {
-                fullname,
-                bio
-            },
+
         };
 
         console.log('Submitting data:', data); // Log the data to verify its structure
@@ -66,19 +61,6 @@ function Register() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                    type="text"
-                    name="fullname"
-                    placeholder="Full Name"
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
-                />
-                <textarea
-                    name="bio"
-                    placeholder="Bio"
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
                 />
                 <button type="submit">Register</button>
             </form>
