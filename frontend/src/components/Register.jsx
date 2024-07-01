@@ -21,17 +21,27 @@ function Register() {
 
         console.log('Submitting data:', data); // Log the data to verify its structure
 
+       // Using axios for HTTP requests
+
+
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/user/register/', data);
-            setMessage('User registered successfully!');
-            navigate(`/profile/${response.data.id}`);
+            const response = await axios.post('/api/user/register/', userData);
+            console.log('User registered successfully:', response.data);
         } catch (error) {
-            if (error.response && error.response.data) {
-                setMessage(`Failed to register user: ${error.response.data}`);
-            } else {
-                setMessage('Failed to register user.');
-            }
+            console.error('Error registering user:', error);
         }
+
+
+    // Example function to get a user's profile
+
+        try {
+            const response = await axios.get(`/api/profile/${userId}/`);
+            console.log('User profile:', response.data);
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+
+
     };
 
     return (
