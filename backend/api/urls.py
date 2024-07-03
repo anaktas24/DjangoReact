@@ -18,8 +18,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("user/register/", views.CreateUserView.as_view(), name="register"),
     path('profile/<int:pk>/', views.ProfileDetailView.as_view(), name='profile'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-
+    path('countries/', views.CountryView.as_view(), name='countries'),
+    path('profile/tasks/', views.TaskView.as_view(), name='tasks'),
    ]

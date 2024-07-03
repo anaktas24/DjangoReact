@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
 import os
-import SECRET_KEY
+
 
 load_dotenv()
 
@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-SECRET_KEY
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = SECRET_KEY = os.getenv
+
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
