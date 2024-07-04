@@ -4,45 +4,39 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Register.css';
 
 function Register() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+    })
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const data = {
-            username,
-            email,
-            password,
-
-        };
-
-        console.log('Submitting data:', data); // Log the data to verify its structure
-
-       // Using axios for HTTP requests
-
-
-        try {
-            const response = await axios.post('/api/user/register/', userData);
-            console.log('User registered successfully:', response.data);
-        } catch (error) {
-            console.error('Error registering user:', error);
-        }
-
-
-    // Example function to get a user's profile
-
-        try {
-            const response = await axios.get(`/api/profile/${userId}/`);
-            console.log('User profile:', response.data);
-        } catch (error) {
-            console.error('Error fetching profile:', error);
-        }
-
-
+    const handleChange = (event) => {
+      setFormData({
+          ...formData,
+          [event.target.name]: event.target.value
+      });
     };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+          const response = await axios.post('http://localhost:8000/api/user/register/', formData, {
+              headers: {
+                  'Content-Type': 'application/json',
+              }
+          });
+          console.log('Registration successful', response.data); // response.data contains the returned data
+          // You can add more logic here if you need to handle the data
+      } catch (error) {
+          if (error.response) {
+              console.error('Registration failed:', error.response.data);
+          } else if (error.request) {
+              console.error('Registration failed: No response received', error.request);
+          } else {
+              console.error('Error', error.message);
+          }
+      }
+  };
 
     return (
         <div className="main-title form-block">
@@ -52,35 +46,28 @@ function Register() {
             </div>
             <form onSubmit={handleSubmit}>
                 <input
-                    type="text"
+                    type="username"
                     name="username"
                     placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={formData.username}
+                    onChange={handleChange}
                 />
                 <input
                     type="email"
                     name="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={handleChange}
                 />
                 <input
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formData.password}
+                    onChange={handleChange}
                 />
                 <button type="submit">Register</button>
             </form>
-            {message && <p>{message}</p>}
-            <div id="labels">
-                Already registered? <span>Login</span>
-                Password lost? <span>Reset</span>
-                <span>Back</span>
-                Not registered? <span>Create an account</span>
-            </div>
         </div>
     );
 }
