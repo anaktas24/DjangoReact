@@ -2,13 +2,22 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 #from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics, status
 from django.contrib.auth import get_user_model
+from rest_framework.response import Response
 from .models import User, Profile, Task, Country
 from .serializers import  UserSerializer, ProfileSerializer, TaskSerializer, CountrySerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 User = get_user_model()
+
+class UserRegisterView(generics.CreateAPIView):
+    def post(self, request, *args, **kwargs):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
