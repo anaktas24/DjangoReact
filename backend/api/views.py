@@ -25,9 +25,14 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 class ProfileDetailView(generics.RetrieveAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            profile = Profile.objects.get(user=request.user)
+            serializer= ProfileSerializer(profile)
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return Response({"error": "Profile does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
 class CountryView(generics.ListAPIView):
     queryset = Profile.objects.all()
@@ -38,15 +43,3 @@ class TaskView(generics.ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
-#@login_required
-def tasks_view(request):
-    # Check if the user has a profile
-    try:
-        profile = request.user.profile
-    except Profile.DoesNotExist:
-        # Redirect to a page where they can create a profile
-        return redirect('create-profile')
-
-    # If they have a profile, retrieve their tasks
-    tasks = Task.objects.filter(user=request.user)
-    return render(request, 'tasks.html', {'tasks': tasks})

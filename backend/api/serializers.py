@@ -4,7 +4,7 @@ from .models import User, Profile, Task, Country
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['fullname', 'bio']
+        fields = ['user', 'bio', 'location', 'user__username', 'user__email']
 
 class UserSerializer(serializers.ModelSerializer):
 
