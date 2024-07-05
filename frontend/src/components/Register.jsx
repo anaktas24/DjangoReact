@@ -25,18 +25,27 @@ function Register() {
                   'Content-Type': 'application/json',
               }
           });
-          console.log('Registration successful', response.data); // response.data contains the returned data
-          // You can add more logic here if you need to handle the data
+          if (response.status === 201) { // Check if registration was successful
+              console.log('Registration successful', response.data);
+              navigate('/login'); // Redirect to the login page after successful registration
+          } else {
+              console.error('Registration failed:', response.data); // This case may not be necessary as it might be handled by the catch block
+          }
       } catch (error) {
           if (error.response) {
               console.error('Registration failed:', error.response.data);
+              // Here we handle displaying the error to the user
+              const errors = error.response.data;
+              if (errors.email) {
+                  alert(`Email error: ${errors.email.join(" ")}`); // Display email errors
+              }
           } else if (error.request) {
               console.error('Registration failed: No response received', error.request);
           } else {
               console.error('Error', error.message);
           }
       }
-  };
+    };
 
     return (
         <div className="main-title form-block">
