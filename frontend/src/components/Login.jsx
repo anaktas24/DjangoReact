@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Login.css';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -45,7 +46,7 @@ const Login = () => {
 
 
   return (
-    <div>
+    <div className='container'>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>

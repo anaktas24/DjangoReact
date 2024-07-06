@@ -12,8 +12,10 @@ const Home = () => {
   <div className="bg-image" style={{backgroundImage: `url(${background})`}}></div>
   <div className="home-content">
     <div className="home-left">
-      <h1>Welcome to Migrating Mango</h1>
       <Link to="/register"><button>  Register </button></Link>
+      <Link to="/login"><button>  Login </button></Link>
+      <h1>Welcome to Migrating Mango</h1>
+
       <header className="home-header">
         <h2>Your fruity companion to migration</h2>
       </header>
