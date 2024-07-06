@@ -50,8 +50,8 @@ function Register() {
     return (
         <div className="main-title form-block">
             <div id="title">
-                <h1>Register.</h1>
-                <h2>Your fruity companion to Migration</h2>
+                <h1>Register</h1>
+
             </div>
             <form onSubmit={handleSubmit}>
                 <input
