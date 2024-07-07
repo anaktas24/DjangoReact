@@ -12,8 +12,8 @@ const Home = () => {
   <div className="bg-image" style={{backgroundImage: `url(${background})`}}></div>
   <div className="home-content">
     <div className="home-left">
-      <Link to="/register"><button>  Register </button></Link>
-      <Link to="/login"><button>  Login </button></Link>
+      <Link to="/register" className='Register'><button>  Register </button></Link>
+      <Link to="/login" className='Login'><button>  Login </button></Link> {/* Make the login register form go to the left side of the page*/}
       <h1>Welcome to Migrating Mango</h1>
 
       <header className="home-header">
@@ -25,9 +25,7 @@ const Home = () => {
         <p>
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+
       </section>
     </div>
     <div className="home-right">
