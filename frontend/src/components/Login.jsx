@@ -46,35 +46,34 @@ const Login = () => {
 
 
   return (
-    <div className='container'>
-      <h2>Login</h2>
+    <div className='login'>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+
           <input
             type="email"
             id="email"
             name="email"
             value={credentials.email}
             onChange={handleChange}
-            placeholder="Enter your email"
+            placeholder="Email"
             autoFocus
             required
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
             name="password"
             value={credentials.password}
             onChange={handleChange}
-            placeholder="Enter your password"
+            placeholder="Password"
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className='btn btn-primary btn-block btn-large'>Login</button>
         {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
       </form>
     </div>
