@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Profile from './components/Profile'
 
+
 function Logout() {
   localStorage.clear()
   return <Navigate to="/login" />
@@ -29,6 +30,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path='/profile/' element={<Profile />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

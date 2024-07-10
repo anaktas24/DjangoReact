@@ -6,16 +6,17 @@ import { Link } from 'react-router-dom';
 
 
 
+
 const Home = () => {
   return (
     <div className="home">
   <div className="bg-image" style={{backgroundImage: `url(${background})`}}></div>
   <div className="home-content">
     <div className="home-left">
+
       <Link to="/register" className='Register'><button>  Register </button></Link>
       <Link to="/login" className='Login'><button>  Login </button></Link> {/* Make the login register form go to the left side of the page*/}
       <h1>Welcome to Migrating Mango</h1>
-
       <header className="home-header">
         <h2>Your fruity companion to migration</h2>
       </header>
@@ -30,7 +31,18 @@ const Home = () => {
     <div className="home-right">
       <img src={mango} alt="Description of image" className="home-image" />
     </div>
-
+    <section className="category-section">
+          <h3>Category 1</h3>
+          <p>Details and information about Category 1.</p>
+        </section>
+        <section className="category-section">
+          <h3>Category 2</h3>
+          <p>Explore more about Category 2 here.</p>
+        </section>
+        <section className="category-section">
+        <h3>Category 3</h3>
+          <p>Learn about Category 3 and its benefits.</p>
+        </section>
 
 
   </div>

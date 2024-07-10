@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 
@@ -13,6 +14,7 @@ body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal overflow */
+  overflow-y: auto;
 }
 .home {
   display: flex;
@@ -25,6 +27,7 @@ body, html {
 .home-content {
   display: flex;
   flex: 1;
+  flex-direction: column;
   padding: 40px;
   position: relative; /* Add this */
   z-index: 2; /* Add this */
@@ -38,7 +41,7 @@ body, html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
   overflow: hidden;
 }
@@ -103,4 +106,24 @@ body, html {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+.category-section {
+  padding: 40px;
+  height: auto; /* Flexible height depending on content */
+  min-height: 100vh; /* Ensures at least the height of the viewport */
+  color: #ffffff; /* Assuming you want white text for readability */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  background: rgba(0, 0, 0, 0.5); /* Optional: Adds a dark overlay for better text visibility */
+}
+
+.category-section h3 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.category-section p {
+  font-size: 18px;
+  line-height: 1.6;
 }
