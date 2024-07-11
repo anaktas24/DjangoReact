@@ -4,7 +4,8 @@ import mango from '../assets/mango.png'
 import background from '../assets/background.jpg'
 import { Link } from 'react-router-dom';
 import About from './About';
-import { Link, Element } from 'react-scroll';
+
+
 
 
 
