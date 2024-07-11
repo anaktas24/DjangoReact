@@ -3,6 +3,8 @@ import '../styles/Home.css';
 import mango from '../assets/mango.png'
 import background from '../assets/background.jpg'
 import { Link } from 'react-router-dom';
+import About from './About';
+import { Link, Element } from 'react-scroll';
 
 
 
@@ -36,8 +38,7 @@ const Home = () => {
           <p>Details and information about Category 1.</p>
         </section>
         <section className="category-section">
-          <h3>Category 2</h3>
-          <p>Explore more about Category 2 here.</p>
+          <About/>
         </section>
         <section className="category-section">
         <h3>Category 3</h3>
