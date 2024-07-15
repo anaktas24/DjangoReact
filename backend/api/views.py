@@ -11,13 +11,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 User = get_user_model()
 
-class UserRegisterView(generics.CreateAPIView):
-    def post(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -35,7 +28,7 @@ class ProfileDetailView(generics.RetrieveAPIView):
             return Response({"error": "Profile does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
 class CountryView(generics.ListAPIView):
-    queryset = Profile.objects.all()
+    queryset = Country.objects.all()
     serializer_class = CountrySerializer
     permission_classes = [IsAuthenticated]
 
