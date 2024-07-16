@@ -4,7 +4,7 @@ from .models import User, Profile, Task, Country
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['user', 'bio', 'location', 'user__username', 'user__email']
+        fields = ['user', 'bio', 'location', 'username', 'email']
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -18,6 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         Profile.objects.create(user=user, **profile_data)
         return user
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:

@@ -20,6 +20,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("user/register/", views.CreateUserView.as_view(), name="register"),
+    path("user/login/", views.LoginUserView.as_view(), name="login"),
     path('profile/', views.ProfileDetailView.as_view(), name='profile'),
     path('countries/', views.CountryView.as_view(), name='countries'),
     path('profile/tasks/', views.TaskView.as_view(), name='tasks'),
