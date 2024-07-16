@@ -22,7 +22,7 @@ const Login = () => {
     setError('');  // Clear any previous errors
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login/', credentials, {
+      const response = await axios.post('http://127.0.0.1:8000/api/user/login/', credentials, {
         headers: { 'Content-Type': 'application/json' }
       });
 
