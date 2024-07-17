@@ -25,7 +25,7 @@ const Login = () => {
       const response = await axios.post('http://127.0.0.1:8000/api/user/login/', credentials, {
         headers: { 'Content-Type': 'application/json' }
       });
-
+      console.log("Response from server:", response.data);
       // Assuming the token is returned correctly
       if (response.data.token) {
         localStorage.setItem('token', response.data.token); // Store the token securely
@@ -34,11 +34,10 @@ const Login = () => {
         throw new Error('Token not provided in response.'); // Handle cases where token is missing
       }
     } catch (error) {
+      console.error("Error details:", error);  // Log the full error
       if (error.response) {
-        // Handle HTTP errors received from the server
         setError(`Login failed: ${error.response.data.error || 'Please check your credentials.'}`);
       } else {
-        // Handle other errors such as network issues
         setError('Unable to connect to the server. Please try again later.');
       }
     }
