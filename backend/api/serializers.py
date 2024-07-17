@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Profile, Task, Country
+from .models import User, Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,14 +22,3 @@ class UserSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
-
-
-class TaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Task
-        fields = ['id', 'title', 'description', 'user']
-
-class CountrySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Country
-        fields = ['name', 'code']
