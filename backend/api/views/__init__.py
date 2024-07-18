@@ -1,2 +1,1 @@
-from .user_views import CreateUserView, LoginUserView
-from .profile_views import ProfileDetailView
+from .user_views import RegisterView, LoginView
