@@ -1,84 +1,152 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Register.css';
+import {useState, useContext} from 'react'
+import { Link } from 'react-router-dom'
+import AuthContext from '../AuthContext.jsx'
+
 
 function Register() {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-    })
 
-    const handleChange = (event) => {
-      setFormData({
-          ...formData,
-          [event.target.name]: event.target.value
-      });
-    };
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          const response = await axios.post('http://localhost:8000/api/user/register/', formData, {
-              headers: {
-                  'Content-Type': 'application/json',
-              }
-          });
-          if (response.status === 201) { // Check if registration was successful
-              console.log('Registration successful', response.data);
-              navigate('/login'); // Redirect to the login page after successful registration
-          } else {
-              console.error('Registration failed:', response.data); // This case may not be necessary as it might be handled by the catch block
-          }
-      } catch (error) {
-          if (error.response) {
-              console.error('Registration failed:', error.response.data);
-              // Here we handle displaying the error to the user
-              const errors = error.response.data;
-              if (errors.email) {
-                  alert(`Email error: ${errors.email.join(" ")}`); // Display email errors
-              }
-          } else if (error.request) {
-              console.error('Registration failed: No response received', error.request);
-          } else {
-              console.error('Error', error.message);
-          }
-      }
-    };
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [password2, setPassword2] = useState("")
 
-    return (
-        <div className="main-title form-block">
-            <div id="title">
-                <h1>Register</h1>
+  const {registerUser} = useContext(AuthContext)
 
+  console.log(email);
+  console.log(username);
+  console.log(password);
+  console.log(password2);
+
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    registerUser(email, username, password, password2)
+  }
+
+
+  return (
+    <div>
+      <>
+        <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
+          <div className="container py-5 h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              <div className="col col-xl-10">
+                <div className="card" style={{ borderRadius: "1rem" }}>
+                  <div className="row g-0">
+                    <div className="col-md-6 col-lg-5 d-none d-md-block">
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                        alt="login form"
+                        className="img-fluid"
+                        style={{ borderRadius: "1rem 0 0 1rem" }}
+                      />
+                    </div>
+                    <div className="col-md-6 col-lg-7 d-flex align-items-center">
+                      <div className="card-body p-4 p-lg-5 text-black">
+                        <form onSubmit={handleSubmit}>
+                          <div className="d-flex align-items-center mb-3 pb-1">
+                            <i
+                              className="fas fa-cubes fa-2x me-3"
+                              style={{ color: "#ff6219" }}
+                            />
+                            <span className="h2 fw-bold mb-0">
+                              Welcome to <b>Desphixs👋</b>
+                            </span>
+                          </div>
+                          <h5
+                            className="fw-normal mb-3 pb-3"
+                            style={{ letterSpacing: 1 }}
+                          >
+                            Sign Up
+                          </h5>
+                          <div className="form-outline mb-4">
+                            <input
+                              type="email"
+                              id="form2Example17"
+                              className="form-control form-control-lg"
+                              placeholder="Email Address"
+                              onChange={e => setEmail(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-outline mb-4">
+                            <input
+                              type="text"
+                              id="form2Example17"
+                              className="form-control form-control-lg"
+                              placeholder="Username"
+                              onChange={e => setUsername(e.target.value)}
+
+                            />
+                          </div>
+                          <div className="form-outline mb-4">
+                            <input
+                              type="password"
+                              id="form2Example17"
+                              className="form-control form-control-lg"
+                              placeholder="Password"
+                              onChange={e => setPassword(e.target.value)}
+
+                            />
+                          </div>
+                          <div className="form-outline mb-4">
+                            <input
+                              type="password"
+                              id="form2Example27"
+                              className="form-control form-control-lg"
+                              placeholder="Confirm Password"
+                              onChange={e => setPassword2(e.target.value)}
+
+                            />
+                          </div>
+                          <div className="pt-1 mb-4">
+                            <button
+                              className="btn btn-dark btn-lg btn-block"
+                              type="submit"
+                            >
+                              Register
+                            </button>
+                          </div>
+                          <a className="small text-muted" href="#!">
+                            Forgot password?
+                          </a>
+                          <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
+                            Already have an account?{" "}
+                            <Link to="/login" style={{ color: "#393f81" }}>
+                              Login Now
+                            </Link>
+                          </p>
+                          <a href="#!" className="small text-muted">
+                            Terms of use.
+                          </a>
+                          <a href="#!" className="small text-muted">
+                            Privacy policy
+                          </a>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="username"
-                    name="username"
-                    placeholder="Username"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    );
+          </div>
+        </section>
+        <footer className="bg-light text-center text-lg-start">
+          {/* Copyright */}
+          <div
+            className="text-center p-3"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+          >
+            © 2019 - till date Copyright:
+            <a className="text-dark" href="https://mdbootstrap.com/">
+              desphixs.com
+            </a>
+          </div>
+          {/* Copyright */}
+        </footer>
+    </>
+
+    </div>
+  )
 }
 
-export default Register;
+export default Register

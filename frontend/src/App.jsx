@@ -8,7 +8,7 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Profile from './components/Profile'
-
+import { AuthProvider } from './AuthContext'
 
 function Logout() {
   localStorage.clear()
@@ -23,17 +23,19 @@ function RegisterAndLogout() {
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} /> {/*we can put <ProtectedRoute>here so that we HAVE to login*/}
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<Register />} />
-        <Route path='/profile/' element={<Profile />} />
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} /> {/*we can put <ProtectedRoute>here so that we HAVE to login*/}
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<Register />} />
+          <Route path='/profile/' element={<Profile />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </AuthProvider>
     </BrowserRouter>
   )
 }

@@ -1,82 +1,132 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Login.css';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import AuthContext from '../AuthContext.jsx'
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log("Handling change for:", name, "value:", value);
-    setCredentials(prevCredentials => ({
-      ...prevCredentials,
-      [name]: value
-    }));
-  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError('');  // Clear any previous errors
+function Login() {
 
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/user/login/', credentials, {
-        headers: { 'Content-Type': 'application/json' }
-      });
-      console.log("Response from server:", response.data);
-      // Assuming the token is returned correctly
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token); // Store the token securely
-        navigate('/profile'); // Redirect to the profile page or another route
-      } else {
-        throw new Error('Token not provided in response.'); // Handle cases where token is missing
-      }
-    } catch (error) {
-      console.error("Error details:", error);  // Log the full error
-      if (error.response) {
-        setError(`Login failed: ${error.response.data.error || 'Please check your credentials.'}`);
-      } else {
-        setError('Unable to connect to the server. Please try again later.');
-      }
-    }
-  };
+  const {loginUser} = useContext(AuthContext)
+  const handleSubmit = e => {
+    e.preventDefault()
+    const email = e.target.email.value
+    const password = e.target.password.value
 
+    email.length > 0 && loginUser(email, password)
+
+    console.log(email)
+    console.log(password)
+
+  }
 
   return (
-    <div className='login'>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            placeholder="Email"
-            autoFocus
-            required
-          />
+    <div>
+      <>
+  <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
+    <div className="container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col col-xl-10">
+          <div className="card" style={{ borderRadius: "1rem" }}>
+            <div className="row g-0">
+              <div className="col-md-6 col-lg-5 d-none d-md-block">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                  alt="login form"
+                  className="img-fluid"
+                  style={{ borderRadius: "1rem 0 0 1rem" }}
+                />
+              </div>
+              <div className="col-md-6 col-lg-7 d-flex align-items-center">
+                <div className="card-body p-4 p-lg-5 text-black">
+                  <form onSubmit={handleSubmit}>
+                    <div className="d-flex align-items-center mb-3 pb-1">
+                      <i
+                        className="fas fa-cubes fa-2x me-3"
+                        style={{ color: "#ff6219" }}
+                      />
+                      <div className="d-flex align-items-center mb-3 pb-1">
+                        <i
+                          className="fas fa-cubes fa-2x me-3"
+                          style={{ color: "#ff6219" }}
+                        />
+                        <span className="h2 fw-bold mb-0">Welcome back 👋</span>
+                      </div>
+                    </div>
+                    <h5
+                      className="fw-normal mb-3 pb-3"
+                      style={{ letterSpacing: 1 }}
+                    >
+                      Sign into your account
+                    </h5>
+                    <div className="form-outline mb-4">
+                      <input
+                        type="email"
+                        id="form2Example17"
+                        className="form-control form-control-lg"
+                        name='email'
+                      />
+                      <label className="form-label" htmlFor="form2Example17">
+                        Email address
+                      </label>
+                    </div>
+                    <div className="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="form2Example27"
+                        className="form-control form-control-lg"
+                        name='password'
+                      />
+                      <label className="form-label" htmlFor="form2Example27">
+                        Password
+                      </label>
+                    </div>
+                    <div className="pt-1 mb-4">
+                      <button
+                        className="btn btn-dark btn-lg btn-block"
+                        type="submit"
+                      >
+                        Login
+                      </button>
+                    </div>
+                    <a className="small text-muted" href="#!">
+                      Forgot password?
+                    </a>
+                    <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
+                      Don't have an account?{" "}
+                      <Link to="/register" style={{ color: "#393f81" }}>
+                        Register Now
+                      </Link>
+                    </p>
+                    <a href="#!" className="small text-muted">
+                      Terms of use.
+                    </a>
+                    <a href="#!" className="small text-muted">
+                      Privacy policy
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-        </div>
-        <button type="submit" className='btn btn-primary btn-block btn-large'>Login</button>
-        {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
-      </form>
+      </div>
     </div>
-  );
-};
+  </section>
+  <footer className="bg-light text-center text-lg-start">
+    <div
+      className="text-center p-3"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+    >
+      © 2019 - till date Copyright:
+      <a className="text-dark" href="https://mdbootstrap.com/">
+        desphixs.com
+      </a>
+    </div>
+  </footer>
+</>
 
-export default Login;
+    </div>
+  )
+}
+
+export default Login
