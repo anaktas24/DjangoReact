@@ -1,12 +1,17 @@
 from django.contrib import admin
-from api.models import User, Profile
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.utils.translation import gettext_lazy as _
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import User
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ["username", "email"]
-
-class ProfileAdmin(admin.ModelAdmin):
-    list_editable = ["bio"]
-    list_display = ["user", "full_name","bio"]
+class UserAdmin(BaseUserAdmin):
+    ordering = ['email']
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = User
+    list_display = ['email', 'first_name', 'last_name', 'is_staff', 'is_active']
+    list_display_links = ['email']
+    list_filter = ['email', 'first_name', 'last_name', 'is_staff', 'is_active']
+    search_fields = ['email', 'first_name', 'last_name']
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile, ProfileAdmin)
