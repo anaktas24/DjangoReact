@@ -1,38 +1,28 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save
+from django.contrib.auth.models import AbstractUser, PermissionMixin
+from django.utils.translation import gettext_lazy as _
+from .managers import CustomUserManager
 
-
-print("Loading User model...")
-
-class User(AbstractUser):
-    username = models.CharField(max_length=200)
-    email = models.EmailField(unique=True)
+class User(AbstractUser, PermissionMixin):
+    first_name = models.CharField(_("First Name"), max_length=100)
+    last_name = models.CharField(_("Last Name"), max_length=100)
+    email = models.EmailField(_("Email Address"), max_length=254, unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    objects = CustomUserManager()
+
+    class Meta:
+        verbose_name = _("User")
+        verbose_name_plural = _("Users")
 
     def __str__(self):
-        return self.username
+        return self.email
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=200)
-    #image = models.ImageField(default = "default.jpg", upload_to="user_images")
-    bio = models.TextField(max_length=300)
-
-
-    def __str__(self):
-        return self.full_name
-
-
-def craete_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
-post_save.connect(craete_user_profile, sender=User)
-post_save.connect(save_user_profile, sender=User)
+    @property
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
