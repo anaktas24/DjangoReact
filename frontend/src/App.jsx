@@ -1,13 +1,12 @@
-import react from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './components/Login'
-import Register from './components/Register'
-import ProtectedRoute from './components/ProtectedRoute'
-import Home from './components/Home'
-import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import Register from './components/Register'
+import NotFound from './components/NotFound'
 import Footer from './components/Footer'
-import Profile from './components/Profile'
+
 import { AuthProvider } from './AuthContext'
 
 function Logout() {
@@ -29,9 +28,8 @@ function App() {
           <Route path="/" element={<Home />} /> {/*we can put <ProtectedRoute>here so that we HAVE to login*/}
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
-          <Route path='/profile/' element={<Profile />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
