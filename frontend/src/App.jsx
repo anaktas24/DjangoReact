@@ -2,14 +2,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Home from './pages/Home'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 import ResetPassword from './pages/ResetPassword'
-import ResetPasswordPageConfirm from "./pages/ResetPasswordConfirm";
+import ResetPasswordConfirm from "./pages/ResetPasswordConfirm";
 import Activate from "./pages/Activate";
 
 
@@ -17,7 +17,7 @@ import Activate from "./pages/Activate";
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
+
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} /> {/*we can put <ProtectedRoute>here so that we HAVE to login*/}
@@ -31,7 +31,7 @@ function App() {
         </Routes>
         <ToastContainer />
         <Footer />
-      </AuthProvider>
+
     </BrowserRouter>
   )
 }
