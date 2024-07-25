@@ -3,24 +3,16 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import Footer from './components/Footer'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Register from './pages/Register'
 import NotFound from './pages/NotFound'
-import Footer from './components/Footer'
 import ResetPassword from './pages/ResetPassword'
+import ResetPasswordPageConfirm from "./pages/ResetPasswordConfirm";
+import Activate from "./pages/Activate";
 
-import { AuthProvider } from './AuthContext'
 
-function Logout() {
-  localStorage.clear()
-  return <Navigate to="/login" />
-}
-
-function RegisterAndLogout() {
-  localStorage.clear()
-  return <Register/>
-}
 
 function App() {
   return (
@@ -30,9 +22,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/*we can put <ProtectedRoute>here so that we HAVE to login*/}
           <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/activate/:uid/:token" element={<Activate />} />
+          <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />
