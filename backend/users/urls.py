@@ -1,6 +1,6 @@
 # Description: This file contains the URL patterns for the API app.
 from django.urls import path
-from api import views
+from users import views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi

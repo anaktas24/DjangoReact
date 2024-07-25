@@ -59,11 +59,11 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework_simplejwt",
     #internal apps
-    "api",
+    "users",
 
 
 ]
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -193,8 +193,8 @@ DJOSER = {
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
     "SERIALIZERS": {
-        "user_create": "api.serializers.UserCreateSerializer",
-        "user ": "api.serializers.UserCreateSerializer",
+        "user_create": "users.serializers.UserCreateSerializer",
+        "user ": "users.serializers.UserCreateSerializer",
         "user_delete": "djoser.serializers.UserDeleteSerializer",
     },
 }
