@@ -2,12 +2,12 @@ import axios from "axios"
 
 const BACKEND_DOMAIN = "http://localhost:8000"
 
-const REGISTER_URL = `${BACKEND_DOMAIN}/api/auth/users/`
-const LOGIN_URL = `${BACKEND_DOMAIN}/api/auth/jwt/create/`
-const ACTIVATE_URL = `${BACKEND_DOMAIN}/api/auth/users/activation/`
-const RESET_PASSWORD_URL = `${BACKEND_DOMAIN}/api/auth/users/reset_password/`
-const RESET_PASSWORD_CONFIRM_URL = `${BACKEND_DOMAIN}/api/auth/users/reset_password_confirm/`
-const GET_USER_INFO = `${BACKEND_DOMAIN}/api/auth/users/me/`
+const REGISTER_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/`
+const LOGIN_URL = `${BACKEND_DOMAIN}/api/v1/auth/jwt/create/`
+const ACTIVATE_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/activation/`
+const RESET_PASSWORD_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/reset_password/`
+const RESET_PASSWORD_CONFIRM_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/reset_password_confirm/`
+const GET_USER_INFO = `${BACKEND_DOMAIN}/api/v1/auth/users/me/`
 
 
 
@@ -20,9 +20,17 @@ const register = async (userData) => {
         }
     }
 
-    const response = await axios.post(REGISTER_URL, userData, config)
-
-    return response.data
+    try {
+      const response = await axios.post(REGISTER_URL, userData, config)
+      return response.data
+  } catch (error) {
+      if (error.response) {
+          console.error("Error Data:", error.response.data);
+          console.error("Status:", error.response.status);
+          console.error("Headers:", error.response.headers);
+      }
+      throw error;
+  }
 }
 
 // Login user
