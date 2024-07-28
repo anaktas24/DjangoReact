@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/Home.css';
 import mango from '../assets/mango.png'
-import background from '../assets/background.jpg'
 import { Link } from 'react-router-dom';
 import About from './About';
 
@@ -13,8 +12,7 @@ import About from './About';
 const Home = () => {
   return (
     <div className="home">
-  <div className="bg-image" style={{backgroundImage: `url(${background})`}}></div>
-  <div className="home-content">
+    <div className="home-content">
     <div className="home-left">
 
       <Link to="/register" className='Register'><button>  Register </button></Link>

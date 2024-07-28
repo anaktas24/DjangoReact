@@ -70,7 +70,7 @@ const RegisterPage = () => {
     return (
         <>
             <div className="main-title">
-                <h1 className="login">Register <BiUser /> </h1>
+                <h1 className="title">Register </h1>
 
                 {isLoading && <Spinner />}
 
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                         required
                     />
 
-                    <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Register</button>
+                    <button className="btn btn-primary btn-block btn-large" type="submit" onClick={handleSubmit}>Register</button>
                 </form>
             </div>
         </>

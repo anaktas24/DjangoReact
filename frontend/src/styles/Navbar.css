@@ -1,35 +1,108 @@
-.navbar {
-  background: transparent;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed; /* Make the navbar fixed at the top */
+
+
+.nav {
   width: 100%;
-  top:  0;
-  z-index: 3; /* Ensure the navbar is above the background image */
+  height: 65px;
+  position: fixed;
+  line-height: 65px;
+  text-align: center;
 }
 
-.navbar-logo {
-  flex: 1;
-
+.nav div.logo {
+  float: left;
+  width: auto;
+  height: auto;
+  padding-left: 3rem;
 }
 
-.navbar-links {
-  list-style: none;
+.nav div.logo a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.nav div.logo a:hover {
+  color: #00E676;
+}
+
+.nav div.main_list {
+  height: 65px;
+  float: right;
+}
+
+.nav div.main_list ul {
+  width: 100%;
+  height: 65px;
   display: flex;
-  gap: 20px;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.navbar-links li {
-  margin: 1px;
+.nav div.main_list ul li {
+  width: auto;
+  height: 65px;
+  padding: 0;
+  padding-right: 3rem;
 }
 
-.navbar-links a {
+.nav div.main_list ul li a {
   text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 36px;
+  color: #fff;
+  line-height: 65px;
+  font-size: 2.4rem;
+}
+
+.nav div.main_list ul li a:hover {
+  color: #00E676;
+}
+
+/* Media qurey section */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+      margin: 0;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .navTrigger {
+      display: block;
+  }
+  .nav div.logo {
+      margin-left: 15px;
+  }
+  .nav div.main_list {
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+  }
+  .nav div.show_list {
+      height: auto;
+      display: none;
+  }
+  .nav div.main_list ul {
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: #111;
+      /*same background color of navbar*/
+      background-position: center top;
+  }
+  .nav div.main_list ul li {
+      width: 100%;
+      text-align: right;
+  }
+  .nav div.main_list ul li a {
+      text-align: center;
+      width: 100%;
+      font-size: 3rem;
+      padding: 20px;
+  }
+  .nav div.media_button {
+      display: block;
+  }
 }

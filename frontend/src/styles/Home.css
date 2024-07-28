@@ -33,7 +33,7 @@ body, html {
   z-index: 2; /* Add this */
 }
 
-.bg-image {
+/*.bg-image {
   background-image: url("https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b");
   background-size: cover;
   background-position: center;
@@ -44,7 +44,7 @@ body, html {
   height: 100%;
   z-index: 1;
   overflow: hidden;
-}
+}*/
 
 .home-left {
   flex: 1;
@@ -109,13 +109,13 @@ body, html {
 }
 .category-section {
   padding: 40px;
-  height: auto; /* Flexible height depending on content */
-  min-height: 100vh; /* Ensures at least the height of the viewport */
-  color: #ffffff; /* Assuming you want white text for readability */
+  height: auto;
+  min-height: 100vh;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  background: rgba(0, 0, 0, 0.5); /* Optional: Adds a dark overlay for better text visibility */
+  justify-content: center;
+
 }
 
 .category-section h3 {
