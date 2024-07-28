@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register, reset } from '../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
+import '../styles/Register.css'
 
 const RegisterPage = () => {
 
@@ -68,12 +69,12 @@ const RegisterPage = () => {
 
     return (
         <>
-            <div className="container auth__container">
-                <h1 className="main__title">Register <BiUser /> </h1>
+            <div className="main-title">
+                <h1 className="login">Register <BiUser /> </h1>
 
                 {isLoading && <Spinner />}
 
-                <form className="auth__form">
+                <form className="input">
                     <input type="text"
                         placeholder="First Name"
                         name="first_name"
