@@ -20,8 +20,9 @@ const Navbar = () => {
 
 
     return (
+
         <nav className="nav">
-          <div class="container">
+          <div className="container">
             <NavLink className="logo" to="/">Logo</NavLink>
             <div id="mainListDiv" className='main_list'>
               <ul className="navlinks">
