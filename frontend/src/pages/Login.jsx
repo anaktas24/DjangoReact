@@ -57,12 +57,12 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className="container auth__container">
-                <h1 className="main__title">Login <BiLogInCircle /></h1>
+            <div className="main-title">
+                <h1 className="title">Login </h1>
 
                 {isLoading && <Spinner />}
 
-                <form className="auth__form">
+                <form className="input">
                     <input type="text"
                         placeholder="email"
                         name="email"
@@ -79,7 +79,7 @@ const LoginPage = () => {
                     />
                     <Link to="/reset-password">Forget Password ?</Link>
 
-                    <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Login</button>
+                    <button className="btn btn-primary btn-block btn-large" type="submit" onClick={handleSubmit}>Login</button>
                 </form>
             </div>
         </>
