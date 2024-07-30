@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import ResetPassword from './pages/ResetPassword'
 import ResetPasswordConfirm from "./pages/ResetPasswordConfirm";
 import Activate from "./pages/Activate";
+import Profile from "./pages/Profile";
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/activate/:uid/:token" element={<Activate />} />
           <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />
