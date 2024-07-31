@@ -28,6 +28,7 @@ const Navbar = () => {
               <ul className="navlinks">
                   {user ?
                       <>
+                          <NavLink className="navlinks" to="/profile">Profile</NavLink>
                           <NavLink className="navlinks" to="/dashboard">Dashboard</NavLink>
                           <NavLink className="navlinks" to="/" onClick={handleLogout}>Logout</NavLink>
                       </>
