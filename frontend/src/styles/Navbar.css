@@ -1,16 +1,117 @@
-nav {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
+.nav {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-nav ul,
-nav ul li {
-  outline: 0;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-nav ul li a {
+.logo {
+  font-size: 1.5rem;
   text-decoration: none;
+  color: white;
+}
+
+.menu-checkbox {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-icon .navicon {
+  background: white;
+  display: block;
+  height: 3px;
+  width: 25px;
+  position: relative;
+  transition: background 0.2s ease-out;
+}
+
+.menu-icon .navicon:before,
+.menu-icon .navicon:after {
+  background: white;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+}
+
+.menu-icon .navicon:before {
+  top: 7px;
+}
+
+.menu-icon .navicon:after {
+  top: -7px;
+}
+
+.navlinks {
+  display: flex;
+  list-style: none;
+}
+
+.navlink {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+.navlink:hover {
+  color: #ff6347;
+}
+
+@media (max-width: 768px) {
+  .navlinks {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .navlinks .navlink {
+      margin: 0;
+      padding: 1rem;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+  }
+
+  .main_list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  .menu-icon {
+      display: block;
+  }
+
+  .menu-checkbox:checked + .menu-icon .navicon {
+      background: transparent;
+  }
+
+  .menu-checkbox:checked + .menu-icon .navicon:before {
+      transform: rotate(-45deg);
+      top: 0;
+  }
+
+  .menu-checkbox:checked + .menu-icon .navicon:after {
+      transform: rotate(45deg);
+      top: 0;
+  }
+
+  .menu-checkbox:checked ~ .main_list .navlinks {
+      display: flex;
+  }
 }

@@ -20,28 +20,31 @@ const Navbar = () => {
 
 
     return (
-
         <nav className="nav">
-          <div className="container">
-            <NavLink className="logo" to="/">Logo</NavLink>
-            <div id="mainListDiv" className='main_list'>
-              <ul className="navlinks">
-                  {user ?
-                      <>
-                          <NavLink className="navlinks" to="/profile">Profile</NavLink>
-                          <NavLink className="navlinks" to="/dashboard">Dashboard</NavLink>
-                          <NavLink className="navlinks" to="/" onClick={handleLogout}>Logout</NavLink>
-                      </>
-                      :
-                      <>
-                          <NavLink className="navlinks" to="/dashboard">Dashboard</NavLink>
-                      </>
-                  }
-              </ul>
+            <div className="container">
+                <NavLink className="logo" to="/">Logo</NavLink>
+                <input type="checkbox" id="menu-checkbox" className="menu-checkbox" />
+                <label htmlFor="menu-checkbox" className="menu-icon">
+                    <span className="navicon"></span>
+                </label>
+                <div id="mainListDiv" className="main_list">
+                    <ul className="navlinks">
+                        {user ? (
+                            <>
+
+                              <NavLink className="navlink" to="/dashboard">Dashboard</NavLink>
+                              <NavLink className="navlink" to="/" onClick={handleLogout}>Logout</NavLink>
+                            </>
+                        ) : (
+                            <>
+                              <NavLink className="navlink" to="/dashboard">Dashboard</NavLink>
+                            </>
+                        )}
+                    </ul>
+                </div>
             </div>
-          </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar
