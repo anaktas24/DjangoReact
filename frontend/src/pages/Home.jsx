@@ -33,16 +33,16 @@ const Home = () => {
       <img src={mango} alt="Description of image" className="home-image" />
     </div>
     <section className="category-section">
-          <h3>Category 1</h3>
-          <p>Details and information about Category 1.</p>
-        </section>
-        <section className="category-section">
-          <About/>
-        </section>
-        <section className="category-section">
-        <h3>Category 3</h3>
-          <p>Learn about Category 3 and its benefits.</p>
-        </section>
+        <h3>What is Migrating Mango</h3>
+        <p>Details and information about Manago.</p>
+    </section>
+    <section className="category-section">
+      <About/>
+    </section>
+    <section className="category-section">
+    <h3>WHat can you do with it.</h3>
+      <p>Learn about Category 3 and its benefits.</p>
+    </section>
 
 
   </div>
