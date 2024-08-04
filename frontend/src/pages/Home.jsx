@@ -3,8 +3,7 @@ import '../styles/Home.css';
 import mango from '../assets/mango.png'
 import { Link } from 'react-router-dom';
 import About from './About';
-
-
+import Carousel from 'react-bootstrap/Carousel';
 
 
 
@@ -33,10 +32,46 @@ const Home = () => {
       <img src={mango} alt="Description of image" className="home-image" />
     </div>
     <section className="category-section">
-        <h3>What is Migrating Mango</h3>
+        <h3 className='line-title'>What is Migrating Mango</h3>
         <p>Details and information about Manago.</p>
+    <Carousel>
+
+      <div className="owl-carousel custom-carousel owl-theme">
+            <Carousel.Item>
+              <div className="item active">
+                <div className="item-desc">
+                  <h3>Dota 2</h3>
+                  <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+                    Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+                </div>
+              </div>
+            </Carousel.Item>
+
+          <Carousel.Item>
+            <div className="item">
+              <div className="item-desc">
+                <h3>The Witcher 3</h3>
+                <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
+                  of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <div className="item">
+              <div className="item-desc">
+                <h3>RDR 2</h3>
+                <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+                  Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          </div>
+      </Carousel>
     </section>
     <section className="category-section">
+      <button>Explore more</button>
       <About/>
     </section>
     <section className="category-section">
